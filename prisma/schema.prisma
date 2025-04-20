@@ -14,25 +14,70 @@ enum TaskStatus {
   COMPLETED
 }
 
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
 model Task {
   id          Int      @id @default(autoincrement())
   title       String
   description String?
   status      TaskStatus
+  priority    TaskPriority
+  categoryId   Int
+  category     Category @relation(fields: [categoryId], references: [id])
   createdAt  DateTime @default(now()) @map("created_at")
   updatedAt  DateTime @updatedAt @map("updated_at")
-  notes Note[]
+  dueDate DateTime? @map("due_date")
+  completedAt DateTime? @map("completed_at")
+  isRecurring Boolean @default(false) @map("is_recurring")
+  //assignedTo Int? @map("assigned_to") FK to User model (future implementation)
+  notes Note[] 
+  tags TaskTag[]
 
-  @@index([status])
+  @@index([status], name: "idx_task_status")
+  @@index([priority], name: "idx_task_priority")
+  @@index([categoryId], name: "idx_category_id")
 }
 
 model Note {
   id          Int      @id @default(autoincrement())
   content     String
+  isImportant Boolean @default(false) @map("is_important")
+  //author      Int? FK to User (future feature)
   taskId      Int
   createdAt  DateTime @default(now()) @map("created_at")
   updatedAt  DateTime @updatedAt @map("updated_at")
   task        Task     @relation(fields: [taskId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
-  @@index([taskId])
+  @@index([taskId], name: "idx_task_id")
+}
+
+model Category {
+  id         Int      @id @default(autoincrement())
+  name       String   @unique
+  tasks      Task[]
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+}
+
+model Tag {
+  id         Int       @id @default(autoincrement())
+  name       String    @unique
+  tasks      TaskTag[]
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+
+  @@index([name], name: "idx_name")
+}
+
+model TaskTag {
+  taskId  Int
+  tagId   Int
+  task    Task   @relation(fields: [taskId], references: [id])
+  tag     Tag    @relation(fields: [tagId], references: [id])
+
+  @@id([taskId, tagId])
 }
