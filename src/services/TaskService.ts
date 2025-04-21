@@ -1,0 +1,30 @@
+import { Task, TaskStatus } from '@prisma/client';
+import { RepositoryFactory } from '@repositories/repositoryFactory';
+
+export class TaskService {
+  private taskRepository = RepositoryFactory.taskRepository;
+
+  async create(data: Omit<Task, 'id' | 'createdAt' | 'updatedAt'>): Promise<Task> {
+    return this.taskRepository.create(data);
+  }
+
+  async findAll(): Promise<Task[]> {
+    return this.taskRepository.findAll();
+  }
+
+  async findById(id: number): Promise<Task | null> {
+    return this.taskRepository.findById(id);
+  }
+
+  async update(id: number, data: Partial<Task>): Promise<Task> {
+    return this.taskRepository.update(id, data);
+  }
+
+  async delete(id: number): Promise<Task> {
+    return this.taskRepository.delete(id);
+  }
+
+  async findByStatus(status: TaskStatus): Promise<Task[]> {
+    return this.taskRepository.findAll({ status });
+  }
+}

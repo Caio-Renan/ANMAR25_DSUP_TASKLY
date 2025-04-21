@@ -1,5 +1,5 @@
 import { prisma } from '@database/prisma'
-import { Task } from '@prisma/client'
+import { Task, TaskStatus } from '@prisma/client'
 import { IBaseRepository } from '@repositories/IBaseRepository'
 
 export class TaskRepository implements IBaseRepository<Task> {
@@ -7,8 +7,14 @@ export class TaskRepository implements IBaseRepository<Task> {
     return prisma.task.create({ data })
   }
 
-  async findAll(): Promise<Task[]> {
-    return prisma.task.findMany()
+  async findAll(filters: { status?: TaskStatus } = {}): Promise<Task[]> {
+    const { status } = filters;
+    
+    return prisma.task.findMany({
+      where: {
+        status: status || undefined,
+      },
+    });
   }
 
   async findById(id: number): Promise<Task | null> {
