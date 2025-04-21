@@ -1,14 +1,14 @@
 import { Router } from 'express';
 import { validateBody } from '../middlewares/validations/validateBody';
 import { validateParams } from '../middlewares/validations/validateParams';
-import { createNoteSchema, updateNoteSchema, findNoteByIdSchema, deleteNoteSchema } from '../schemas/noteSchemas';
+import { createNoteSchema, createNoteTaskIdSchema, updateNoteSchema, findNoteByIdSchema, findNotesByTaskIdSchema, deleteNoteSchema } from '../schemas/noteSchemas';
 
 const router = Router();
 
-router.get('/tasks/:taskId/notes', (req, res) => {
+router.get('/tasks/:taskId/notes', validateParams(findNotesByTaskIdSchema),(req, res) => {
     res.json({ message: 'Validation passed!' });
 });
-router.post('/tasks/:taskId/notes', validateBody(createNoteSchema) , (req, res) => {
+router.post('/tasks/:taskId/notes', validateParams(createNoteTaskIdSchema), validateBody(createNoteSchema) , (req, res) => {
     res.json({ message: 'Validation passed!' });
 });
 
