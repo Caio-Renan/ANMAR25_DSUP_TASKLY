@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { TaskStatus, TaskPriority, TaskStatusValues, TaskPriorityValues } from '../enums/taskEnums';
-import { validationMessages } from '../constants/validationMessages';
+import { TaskStatus, TaskPriority, TaskStatusValues, TaskPriorityValues } from '../enums/taskEnums.js';
+import { validationMessages } from '../constants/validationMessages.js';
 
 export const idParamSchema = z.object({
     id: z.coerce.number()

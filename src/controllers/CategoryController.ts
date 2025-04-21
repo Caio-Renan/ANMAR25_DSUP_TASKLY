@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { CategoryService } from '../services/CategoryService';
-import { ServiceFactory } from '@services/serviceFactory';
+import { CategoryService } from '../services/CategoryService.js';
+import { ServiceFactory } from '../services/serviceFactory.js';
 
 export class CategoryController {
   private categoryService: CategoryService;

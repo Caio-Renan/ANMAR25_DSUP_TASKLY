@@ -1,6 +1,6 @@
-import { prisma } from '@database/prisma'
 import { Task, TaskStatus } from '@prisma/client'
-import { IBaseRepository } from '@repositories/IBaseRepository'
+import { prisma } from '../database/prisma.js'
+import { IBaseRepository } from './IBaseRepository.js'
 
 export class TaskRepository implements IBaseRepository<Task> {
   async create(data: Omit<Task, 'id' | 'createdAt' | 'updatedAt'>): Promise<Task> {

@@ -1,5 +1,5 @@
 import { TaskTag } from '@prisma/client';
-import { RepositoryFactory } from '@repositories/repositoryFactory';
+import { RepositoryFactory } from '../repositories/repositoryFactory.js';
 
 export class TaskTagService {
   private taskTagRepository = RepositoryFactory.taskTagRepository;

@@ -1,5 +1,5 @@
 import { Note } from '@prisma/client';
-import { RepositoryFactory } from '@repositories/repositoryFactory';
+import { RepositoryFactory } from '../repositories/repositoryFactory.js';
 
 export class NoteService {
   private noteRepository = RepositoryFactory.noteRepository;

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { NoteService } from '../services/NoteService';
-import { ServiceFactory } from '@services/serviceFactory';
+import { NoteService } from '../services/NoteService.js';
+import { ServiceFactory } from '../services/serviceFactory.js';
 
 export class NoteController {
   private noteService: NoteService;

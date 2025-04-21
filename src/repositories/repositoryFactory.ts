@@ -1,8 +1,8 @@
-import { TaskRepository } from '@repositories/TaskRepository';
-import { NoteRepository } from '@repositories/NoteRepository';
-import { CategoryRepository } from '@repositories/CategoryRepository';
-import { TagRepository } from '@repositories/TagRepository';
-import { TaskTagRepository } from '@repositories/TaskTagRepository';
+import { TaskRepository } from './TaskRepository.js';
+import { NoteRepository } from './NoteRepository.js';
+import { CategoryRepository } from './CategoryRepository.js';
+import { TagRepository } from './TagRepository.js';
+import { TaskTagRepository } from './TaskTagRepository.js';
 
 export const RepositoryFactory = {
   taskRepository: new TaskRepository(),

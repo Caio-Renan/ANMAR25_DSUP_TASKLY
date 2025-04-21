@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { validateBody } from '../middlewares/validations/validateBody';
-import { validateParams } from '../middlewares/validations/validateParams';
-import { createNoteSchema, createNoteTaskIdSchema, updateNoteSchema, findNoteByIdSchema, findNotesByTaskIdSchema, deleteNoteSchema } from '../schemas/noteSchemas';
-import { controllerFactory } from '../controllers/controllerFactory';
+import { validateBody } from '../middlewares/validations/validateBody.js';
+import { validateParams } from '../middlewares/validations/validateParams.js';
+import { createNoteSchema, createNoteTaskIdSchema, updateNoteSchema, findNoteByIdSchema, findNotesByTaskIdSchema, deleteNoteSchema } from '../schemas/noteSchemas.js';
+import { controllerFactory } from '../controllers/controllerFactory.js';
 
 const router = Router();
 

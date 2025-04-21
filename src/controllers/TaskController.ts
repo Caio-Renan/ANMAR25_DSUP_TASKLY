@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import { TaskService } from '../services/TaskService';
+import { TaskService } from '../services/TaskService.js';
 import { TaskStatus } from '@prisma/client';
-import { ServiceFactory } from '@services/serviceFactory';
+import { ServiceFactory } from '../services/serviceFactory.js';
 
 export class TaskController {
   private taskService: TaskService;

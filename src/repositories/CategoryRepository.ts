@@ -1,6 +1,6 @@
 import { Category } from '@prisma/client';
-import { prisma } from '@database/prisma';
-import { IBaseRepository } from '@repositories/IBaseRepository';
+import { prisma } from '../database/prisma.js';
+import { IBaseRepository } from './IBaseRepository.js';
 
 export class CategoryRepository implements IBaseRepository<Category> {
   create(data: Omit<Category, 'id' | 'createdAt' | 'updatedAt'>) {

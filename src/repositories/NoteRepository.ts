@@ -1,6 +1,6 @@
-import { prisma } from '@database/prisma'
 import { Note } from '@prisma/client'
-import { IBaseRepository } from '@repositories/IBaseRepository'
+import { prisma } from '../database/prisma.js'
+import { IBaseRepository } from './IBaseRepository.js'
 
 export class NoteRepository implements IBaseRepository<Note> {
   async create(data: Omit<Note, 'id' | 'createdAt' | 'updatedAt'>): Promise<Note> {

@@ -1,8 +1,8 @@
-import { CategoryController } from './CategoryController';
-import { NoteController } from './NoteController';
-import { TagController } from './TagController';
-import { TaskController } from './TaskController';
-import { TaskTagController } from './TaskTagController';
+import { CategoryController } from './CategoryController.js';
+import { NoteController } from './NoteController.js';
+import { TagController } from './TagController.js';
+import { TaskController } from './TaskController.js';
+import { TaskTagController } from './TaskTagController.js';
 
 export const controllerFactory = {
   categoryController: new CategoryController(),

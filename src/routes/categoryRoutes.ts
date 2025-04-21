@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { validateBody } from '../middlewares/validations/validateBody';
-import { validateParams } from '../middlewares/validations/validateParams';
-import { createCategorySchema, updateCategorySchema, findCategoryByIdSchema, deleteCategorySchema } from '../schemas/categorySchemas';
-import { controllerFactory } from '../controllers/controllerFactory';
+import { validateBody } from '../middlewares/validations/validateBody.js';
+import { validateParams } from '../middlewares/validations/validateParams.js';
+import { createCategorySchema, updateCategorySchema, findCategoryByIdSchema, deleteCategorySchema } from '../schemas/categorySchemas.js';
+import { controllerFactory } from '../controllers/controllerFactory.js';
 
 const router = Router();
 
