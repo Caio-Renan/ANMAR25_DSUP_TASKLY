@@ -1,6 +1,6 @@
 import { Tag } from '@prisma/client';
-import { prisma } from '@database/prisma';
-import { IBaseRepository } from '@repositories/IBaseRepository';
+import { prisma } from '../database/prisma.js';
+import { IBaseRepository } from './IBaseRepository.js';
 
 export class TagRepository implements IBaseRepository<Tag> {
   create(data: Omit<Tag, 'id' | 'createdAt' | 'updatedAt'>) {

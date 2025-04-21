@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { validateBody } from '../middlewares/validations/validateBody';
-import { validateParams } from '../middlewares/validations/validateParams';
-import { createTaskSchema, updateTaskSchema, findTaskByIdSchema, deleteTaskSchema, findTasksByStatusSchema } from '../schemas/taskSchemas';
-import { controllerFactory } from '../controllers/controllerFactory';
+import { validateBody } from '../middlewares/validations/validateBody.js';
+import { validateParams } from '../middlewares/validations/validateParams.js';
+import { createTaskSchema, updateTaskSchema, findTaskByIdSchema, deleteTaskSchema, findTasksByStatusSchema } from '../schemas/taskSchemas.js';
+import { controllerFactory } from '../controllers/controllerFactory.js';
 
 const router = Router();
 

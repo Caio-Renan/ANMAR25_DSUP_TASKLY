@@ -1,5 +1,5 @@
 import { Category } from '@prisma/client';
-import { RepositoryFactory } from '@repositories/repositoryFactory';
+import { RepositoryFactory } from '../repositories/repositoryFactory.js';
 
 export class CategoryService {
   private categoryRepository = RepositoryFactory.categoryRepository;

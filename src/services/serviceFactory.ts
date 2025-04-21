@@ -1,8 +1,8 @@
-import { TaskService } from './TaskService';
-import { NoteService } from './NoteService';
-import { CategoryService } from './CategoryService';
-import { TagService } from './TagService';
-import { TaskTagService } from './TaskTagService';
+import { TaskService } from './TaskService.js';
+import { NoteService } from './NoteService.js';
+import { CategoryService } from './CategoryService.js';
+import { TagService } from './TagService.js';
+import { TaskTagService } from './TaskTagService.js';
 
 export const ServiceFactory = {
   taskService: new TaskService(),

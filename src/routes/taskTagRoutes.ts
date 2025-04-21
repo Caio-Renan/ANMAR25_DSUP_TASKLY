@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { validateParams } from '../middlewares/validations/validateParams';
-import { createTaskTagSchema, deleteTaskTagSchema } from '../schemas/taskTagSchemas';
-import { controllerFactory } from '../controllers/controllerFactory';
+import { validateParams } from '../middlewares/validations/validateParams.js';
+import { createTaskTagSchema, deleteTaskTagSchema } from '../schemas/taskTagSchemas.js';
+import { controllerFactory } from '../controllers/controllerFactory.js';
 
 const router = Router();
 

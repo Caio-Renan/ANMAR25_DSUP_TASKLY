@@ -1,5 +1,5 @@
 import { Tag } from '@prisma/client';
-import { RepositoryFactory } from '@repositories/repositoryFactory';
+import { RepositoryFactory } from '../repositories/repositoryFactory.js';
 
 export class TagService {
   private tagRepository = RepositoryFactory.tagRepository;

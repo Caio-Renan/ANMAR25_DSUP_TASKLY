@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { TaskTagService } from '../services/TaskTagService';
-import { ServiceFactory } from '@services/serviceFactory';
+import { TaskTagService } from '../services/TaskTagService.js';
+import { ServiceFactory } from '../services/serviceFactory.js';
 
 export class TaskTagController {
   private taskTagService: TaskTagService;

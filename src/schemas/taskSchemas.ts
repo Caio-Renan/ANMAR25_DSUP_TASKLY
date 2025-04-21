@@ -1,4 +1,4 @@
-import { idParamSchema, baseTaskSchema, statusParamSchema } from '../utils/validationHelpers';
+import { idParamSchema, baseTaskSchema, statusParamSchema } from '../utils/validationHelpers.js';
 
 export const createTaskSchema = baseTaskSchema.strict();
 

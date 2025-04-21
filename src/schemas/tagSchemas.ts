@@ -1,4 +1,4 @@
-import { idParamSchema, nameSchema } from '../utils/validationHelpers';
+import { idParamSchema, nameSchema } from '../utils/validationHelpers.js';
 
 export const createTagSchema = nameSchema.strict();
 

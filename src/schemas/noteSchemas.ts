@@ -1,4 +1,4 @@
-import { idParamSchema, taskIdSchema, noteContentBaseSchema } from '../utils/validationHelpers';
+import { idParamSchema, taskIdSchema, noteContentBaseSchema } from '../utils/validationHelpers.js';
 
 export const findNotesByTaskIdSchema = taskIdSchema.strict();
 
