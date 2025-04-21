@@ -2,7 +2,9 @@ import { idParamSchema, taskIdSchema, noteContentBaseSchema } from '../utils/val
 
 export const findNotesByTaskIdSchema = taskIdSchema.strict();
 
-export const createNoteSchema = noteContentBaseSchema.merge(taskIdSchema).strict();
+export const createNoteSchema = noteContentBaseSchema.strict();
+
+export const createNoteTaskIdSchema = taskIdSchema.strict();
 
 export const updateNoteSchema = noteContentBaseSchema.partial().strict();
 
