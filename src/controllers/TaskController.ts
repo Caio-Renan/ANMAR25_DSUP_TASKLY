@@ -43,12 +43,24 @@ export class TaskController {
   async findTasksByStatus(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { status } = req.params;
-      const tasks = await this.taskService.findByStatus(status as TaskStatus);
+      const { page = 1, limit = 10 } = req.query;
+
+      const pageNumber = Number(page);
+      const limitNumber = Number(limit);
+
+      const tasks = await this.taskService.findByStatus({
+        status: status as TaskStatus, 
+        page: pageNumber, 
+        limit: limitNumber
+      });
+  
       res.status(200).json(tasks);
     } catch (error) {
-        next(error);
+      next(error);
     }
   }
+  
+  
 
   async findById(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {

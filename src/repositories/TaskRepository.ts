@@ -52,15 +52,32 @@ export class TaskRepository implements IBaseRepository<Task> {
     };
   }
 
-  async findTasksByStatus(filters: { status?: TaskStatus } = {}): Promise<Task[]> {
-    const { status } = filters;
-    
+  async findTasksByStatus({
+    status,
+    skip,
+    limit,
+  }: {
+    status: TaskStatus;
+    skip: number;
+    limit: number;
+  }): Promise<Task[]> {
     return prisma.task.findMany({
       where: {
-        status: status || undefined,
+        status,
+      },
+      skip,
+      take: limit,
+    });
+  }
+  
+  async countTasksByStatus(status: TaskStatus): Promise<number> {
+    return prisma.task.count({
+      where: {
+        status,
       },
     });
   }
+  
 
   async findById(id: number): Promise<Task | null> {
     return prisma.task.findUnique({ where: { id } })

@@ -41,11 +41,11 @@ export const baseTaskSchema = z.object({
       .optional(),
     status: z.enum(TaskStatusValues as [TaskStatus, ...TaskStatus[]], {
       errorMap: () => ({ message: validationMessages.enums.status('status') }),
-    }),
+    }).default(TaskStatus.TODO),
     priority: z.enum(TaskPriorityValues as [TaskPriority, ...TaskPriority[]], {
       errorMap: () => ({ message: validationMessages.enums.priority('priority') }),
     }),
-    categoryId: z.coerce.number()
+    categoryId: z.coerce.number({required_error: validationMessages.required('categoryId'),})
       .int({ message: validationMessages.number.int('categoryId') })
       .positive({ message: validationMessages.number.positiveNumber('categoryId') }),
     dueDate: z.coerce.date({ message: validationMessages.date('dueDate') }).optional(),

@@ -4,7 +4,7 @@ import { validateParams } from '../middlewares/validations/validateParams.js';
 import  validateQuery  from '../middlewares/validations/validateQuery.js';
 import { createTaskSchema, updateTaskSchema, findTaskByIdSchema, deleteTaskSchema, findTasksByStatusSchema } from '../schemas/taskSchemas.js';
 import { controllerFactory } from '../controllers/controllerFactory.js';
-import { paginationTaskQuerySchema } from '../schemas/paginationSchemas.js';
+import { paginationTaskQuerySchema, paginationTaskStatusQuerySchema } from '../schemas/paginationSchemas.js';
 
 const router = Router();
 
@@ -12,7 +12,7 @@ router.get('/tasks', validateQuery(paginationTaskQuerySchema), controllerFactory
 
 router.post('/tasks', validateBody(createTaskSchema), controllerFactory.taskController.create.bind(controllerFactory.taskController));
 
-router.get('/tasks/status/:status', validateParams(findTasksByStatusSchema), controllerFactory.taskController.findTasksByStatus.bind(controllerFactory.taskController));
+router.get('/tasks/status/:status', validateParams(findTasksByStatusSchema), validateQuery(paginationTaskStatusQuerySchema), controllerFactory.taskController.findTasksByStatus.bind(controllerFactory.taskController));
 
 router.get('/tasks/:id', validateParams(findTaskByIdSchema), controllerFactory.taskController.findById.bind(controllerFactory.taskController));
 

@@ -28,7 +28,23 @@ export class TaskService {
     return this.taskRepository.delete(id);
   }
 
-  async findByStatus(status: TaskStatus): Promise<Task[]> {
-    return this.taskRepository.findTasksByStatus({ status });
+  async findByStatus({
+    status,
+    page = 1,
+    limit = 10,
+  }: {
+    status: TaskStatus;
+    page?: number;
+    limit?: number;
+  }): Promise<{ items: Task[]; total: number }> {
+    const skip = (page - 1) * limit;
+  
+    const [items, total] = await Promise.all([
+      this.taskRepository.findTasksByStatus({ status, skip, limit }),
+      this.taskRepository.countTasksByStatus(status),
+    ]);
+  
+    return { items, total };
   }
+  
 }
