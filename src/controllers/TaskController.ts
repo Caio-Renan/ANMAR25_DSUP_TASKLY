@@ -10,6 +10,16 @@ export class TaskController {
     this.taskService = ServiceFactory.taskService;
   }
 
+  async index(req: Request, res: Response, next: NextFunction) {
+    try {
+      const filter = req.query;
+      const tasks = await this.taskService.findAll(filter);
+      res.json(tasks);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async create(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const taskData = req.body;
@@ -19,6 +29,16 @@ export class TaskController {
         next(error);
     }
   }
+
+  findAll = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+      const { page = 1, limit = 10, search, priority, sortBy, sortDirection } = req.query as any;
+      const categories = await this.taskService.findAll({ page: Number(page), limit: Number(limit), search, priority, sortBy, sortDirection });
+      res.status(200).json(categories);
+    } catch (error) {
+      next(error);
+    }
+  };
 
   async findTasksByStatus(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {

@@ -1,7 +1,7 @@
 import { Tag } from '@prisma/client';
 import { prisma } from '../database/prisma.js';
 import { IBaseRepository } from './IBaseRepository.js';
-
+/*
 export class TagRepository implements IBaseRepository<Tag> {
   create(data: Omit<Tag, 'id' | 'createdAt' | 'updatedAt'>) {
     return prisma.tag.create({ data });
@@ -22,4 +22,4 @@ export class TagRepository implements IBaseRepository<Tag> {
   delete(id: number) {
     return prisma.tag.delete({ where: { id } });
   }
-}
+}*/

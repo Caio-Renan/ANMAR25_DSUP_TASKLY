@@ -19,14 +19,15 @@ export class CategoryController {
     }
   }
 
-  async findAll(req: Request, res: Response, next: NextFunction): Promise<void> {
+  findAll = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-      const categories = await this.categoryService.findAll();
+      const { page = 1, limit = 10, search, sortBy, sortDirection } = req.query as any;
+      const categories = await this.categoryService.findAll({ page: Number(page), limit: Number(limit), search, sortBy, sortDirection });
       res.status(200).json(categories);
     } catch (error) {
       next(error);
     }
-  }
+  };
 
   async findById(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {

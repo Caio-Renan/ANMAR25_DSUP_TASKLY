@@ -1,5 +1,6 @@
 import { Task, TaskStatus } from '@prisma/client';
 import { RepositoryFactory } from '../repositories/repositoryFactory.js';
+import { PaginationFilter } from '../repositories/IBaseRepository.js'
 
 export class TaskService {
   private taskRepository = RepositoryFactory.taskRepository;
@@ -8,8 +9,8 @@ export class TaskService {
     return this.taskRepository.create(data);
   }
 
-  async findAll(): Promise<Task[]> {
-    return this.taskRepository.findAll();
+  async findAll(filter: PaginationFilter) {
+    return this.taskRepository.findAll(filter);
   }
 
   async findById(id: number): Promise<Task | null> {
@@ -25,6 +26,6 @@ export class TaskService {
   }
 
   async findByStatus(status: TaskStatus): Promise<Task[]> {
-    return this.taskRepository.findAll({ status });
+    return this.taskRepository.findTasksByStatus({ status });
   }
 }

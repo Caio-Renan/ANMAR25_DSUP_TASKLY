@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { NoteService } from '../services/NoteService.js';
 import { ServiceFactory } from '../services/serviceFactory.js';
-
 export class NoteController {
   private noteService: NoteService;
 
@@ -12,7 +11,7 @@ export class NoteController {
   async create(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const noteData = req.body;
-      const taskId = Number(req.params);
+      const taskId = Number(req.params.taskId);
       const note = await this.noteService.create(taskId, noteData);
       res.status(201).json(note);
     } catch (error) {
@@ -22,8 +21,9 @@ export class NoteController {
 
   async findAllByTaskId(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const taskId = Number(req.params);
-      const notes = await this.noteService.findAllByTaskId(taskId);
+      const { page = 1, limit = 10, search, sortBy, sortDirection } = req.query as any;
+      const taskId = Number(req.params.taskId);
+      const notes = await this.noteService.findAllByTaskId( taskId, { page: Number(page), limit: Number(limit), search, sortBy, sortDirection});
       res.status(200).json(notes);
     } catch (error) {
       next(error);

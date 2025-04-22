@@ -1,6 +1,7 @@
 import { Category } from '@prisma/client';
 import { RepositoryFactory } from '../repositories/repositoryFactory.js';
 import { checkCategoryIdExists, checkCategoryNameExists, checkCategoryCanBeDeleted } from './helpers/categoryHelper.js'
+import { PaginationFilter } from '../repositories/IBaseRepository.js'
 export class CategoryService {
   private categoryRepository = RepositoryFactory.categoryRepository;
 
@@ -10,9 +11,10 @@ export class CategoryService {
     return this.categoryRepository.create(data);
   }
 
-  async findAll(): Promise<Category[]> {
-    return this.categoryRepository.findAll();
+  async findAll(filter: PaginationFilter): Promise<{ items: Category[]; total: number }> {
+    return this.categoryRepository.findAll(filter);
   }
+  
 
   async findById(id: number): Promise<Category | null> {
     await checkCategoryIdExists(id);
