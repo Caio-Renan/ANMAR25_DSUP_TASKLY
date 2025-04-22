@@ -186,3 +186,14 @@ npm run dev
   "updatedAt": "2025-04-22T15:30:00.000Z"
 }
 ```
+
+## 📑 Enums
+## TaskStatus
+- TODO
+- IN_PROGRESS
+- DONE
+
+## TaskPriority
+- LOW
+- MEDIUM
+- HIGH
