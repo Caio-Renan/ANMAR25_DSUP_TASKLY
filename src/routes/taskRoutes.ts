@@ -1,14 +1,14 @@
 import { Router } from 'express';
 import { validateBody } from '../middlewares/validations/validateBody.js';
 import { validateParams } from '../middlewares/validations/validateParams.js';
+import  validateQuery  from '../middlewares/validations/validateQuery.js';
 import { createTaskSchema, updateTaskSchema, findTaskByIdSchema, deleteTaskSchema, findTasksByStatusSchema } from '../schemas/taskSchemas.js';
 import { controllerFactory } from '../controllers/controllerFactory.js';
+import { paginationTaskQuerySchema } from '../schemas/paginationSchemas.js';
 
 const router = Router();
 
-router.get('/tasks',(req, res) => {
-    res.json({ message: 'Validation passed!' });
-});
+router.get('/tasks', validateQuery(paginationTaskQuerySchema), controllerFactory.taskController.index.bind(controllerFactory.taskController), controllerFactory.taskController.findAll);
 
 router.post('/tasks', validateBody(createTaskSchema), controllerFactory.taskController.create.bind(controllerFactory.taskController));
 

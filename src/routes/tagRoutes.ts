@@ -3,7 +3,7 @@ import { validateBody } from '../middlewares/validations/validateBody.js';
 import { validateParams } from '../middlewares/validations/validateParams.js';
 import { createTagSchema, updateTagSchema, findTagByIdSchema, deleteTagSchema } from '../schemas/tagSchemas.js';
 import { controllerFactory } from '../controllers/controllerFactory.js';
-
+/*
 const router = Router();
 
 router.get('/tags', controllerFactory.tagController.findAll.bind(controllerFactory.tagController));
@@ -17,3 +17,4 @@ router.put('/tags/:id', validateParams(updateTagSchema), controllerFactory.tagCo
 router.delete('/tags/:id', validateParams(deleteTagSchema), controllerFactory.tagController.delete.bind(controllerFactory.tagController));
 
 export default router;
+*/

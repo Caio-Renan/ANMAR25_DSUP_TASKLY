@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import { TagService } from '../services/TagService.js';
+//import { TagService } from '../services/TagService.js';
 import { ServiceFactory } from '../services/serviceFactory.js';
-
+/*
 export class TagController {
   private tagService: TagService;
 
@@ -63,3 +63,4 @@ export class TagController {
     }
   }
 }
+*/

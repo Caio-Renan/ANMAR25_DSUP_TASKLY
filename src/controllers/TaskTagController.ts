@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import { TaskTagService } from '../services/TaskTagService.js';
+//import { TaskTagService } from '../services/TaskTagService.js';
 import { ServiceFactory } from '../services/serviceFactory.js';
-
+/*
 export class TaskTagController {
   private taskTagService: TaskTagService;
 
@@ -29,4 +29,4 @@ export class TaskTagController {
       next(error);
     }
   }
-}
+}*/

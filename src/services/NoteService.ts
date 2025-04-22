@@ -1,5 +1,6 @@
 import { Note } from '@prisma/client';
 import { RepositoryFactory } from '../repositories/repositoryFactory.js';
+import { PaginationFilter } from '../repositories/IBaseRepository.js'
 
 export class NoteService {
   private noteRepository = RepositoryFactory.noteRepository;
@@ -8,8 +9,8 @@ export class NoteService {
     return this.noteRepository.create({ ...data, taskId });
   }
 
-  async findAllByTaskId(taskId: number): Promise<Note[]> {
-    return this.noteRepository.findAll({ taskId });
+  async findAllByTaskId(taskId: number, pagination: PaginationFilter): Promise<{ items: Note[]; total: number }> {
+    return this.noteRepository.findAll({taskId}, pagination);
   }
 
   async findById(id: number): Promise<Note | null> {

@@ -65,3 +65,36 @@ export const statusParamSchema = z.object({
     }),
 });
   
+export const basePaginationSchema = z.object({
+    page: z
+    .string()
+    .optional()
+    .transform((val) => (val ? parseInt(val, 10) : 1))
+    .refine((val) => !isNaN(val!) && val! > 0, {
+      message: 'page must be a positive number',
+    }),
+
+  limit: z
+    .string()
+    .optional()
+    .transform((val) => (val ? parseInt(val, 10) : 10))
+    .refine((val) => !isNaN(val!) && val! > 0, {
+      message: 'limit must be a positive number',
+    }),
+
+  search: z.string().optional(),
+
+  sortDirection: z.enum(['asc', 'desc']).optional()
+})
+
+export const categoryPaginationSchema = z.object({sortBy: z.enum(['id', 'name', 'createdAt', 'updatedAt']).default('createdAt')});
+
+export const notePaginationSchema = z.object({sortBy: z.enum(['id', 'content', 'isImportant' ,'createdAt', 'updatedAt']).default('createdAt')});
+
+export const taskPaginationSchema = z.object({priority: z.string()
+    .optional()
+    .transform((val) => (TaskPriorityValues.includes(val as TaskPriority) ? val : undefined))
+    .refine((val) => val === undefined || TaskPriorityValues.includes(val as TaskPriority), {
+      message: validationMessages.enums.priority('priority'),
+    })
+    .transform((val) => (val ? (val as TaskPriority) : undefined)).optional(), sortBy: z.enum(['title', 'description', 'priority' ,'createdAt', 'updatedAt']).default('createdAt'), description: z.string().optional()});

@@ -1,6 +1,6 @@
 import { TaskTag } from '@prisma/client';
 import { RepositoryFactory } from '../repositories/repositoryFactory.js';
-
+/*
 export class TaskTagService {
   private taskTagRepository = RepositoryFactory.taskTagRepository;
 
@@ -11,4 +11,4 @@ export class TaskTagService {
   async delete(taskId: number, tagId: number): Promise<TaskTag> {
     return this.taskTagRepository.delete(taskId, tagId);
   }
-}
+}*/

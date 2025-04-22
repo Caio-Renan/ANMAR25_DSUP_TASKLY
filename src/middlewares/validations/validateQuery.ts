@@ -1,4 +1,18 @@
-import { ZodSchema } from 'zod';
-import { validate } from './validate.js';
+import { Request, Response, NextFunction } from 'express';
 
-export const validateQuery = (schema: ZodSchema) => validate(schema, 'query');
+const validateQuery = (schema: any) => {
+    return (req: Request, res: Response, next: NextFunction): void => {
+      const queryCopy = { ...req.query };
+
+      const result = schema.safeParse(queryCopy);
+  
+      if (!result.success) {
+        res.status(400).json({ errors: result.error.errors });
+        return;
+      }
+  
+      next();
+    };
+  };
+
+export default validateQuery;

@@ -1,12 +1,14 @@
 import { Router } from 'express';
 import { validateBody } from '../middlewares/validations/validateBody.js';
 import { validateParams } from '../middlewares/validations/validateParams.js';
+import  validateQuery  from '../middlewares/validations/validateQuery.js';
 import { createNoteSchema, createNoteTaskIdSchema, updateNoteSchema, findNoteByIdSchema, findNotesByTaskIdSchema, deleteNoteSchema } from '../schemas/noteSchemas.js';
 import { controllerFactory } from '../controllers/controllerFactory.js';
+import { paginationNoteQuerySchema } from '../schemas/paginationSchemas.js';
 
 const router = Router();
 
-router.get('/tasks/:taskId/notes', validateParams(findNotesByTaskIdSchema), controllerFactory.noteController.findAllByTaskId.bind(controllerFactory.noteController));
+router.get('/tasks/:taskId/notes', validateParams(findNotesByTaskIdSchema), validateQuery(paginationNoteQuerySchema),controllerFactory.noteController.findAllByTaskId.bind(controllerFactory.noteController));
 
 router.post('/tasks/:taskId/notes', validateParams(createNoteTaskIdSchema), validateBody(createNoteSchema), controllerFactory.noteController.create.bind(controllerFactory.noteController));
 

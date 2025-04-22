@@ -1,6 +1,6 @@
 import { Tag } from '@prisma/client';
 import { RepositoryFactory } from '../repositories/repositoryFactory.js';
-
+/*
 export class TagService {
   private tagRepository = RepositoryFactory.tagRepository;
 
@@ -24,3 +24,4 @@ export class TagService {
     return this.tagRepository.delete(id);
   }
 }
+*/
