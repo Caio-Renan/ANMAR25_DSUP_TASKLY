@@ -1,11 +1,10 @@
-import { prisma } from '../../database/prisma.js'
-import CustomError from '../../utils/CustomError.js'
+import { prisma } from '../../database/prisma.js';
+import CustomError from '../../utils/CustomError.js';
 
 export const checkIfNoteIdExists = async (id: number) => {
-    const numberId = Number(id);
-    const note = await prisma.note.findUnique({ where: { id: numberId 
-    }})
-    if (!note) {
-      throw new CustomError(404, ['note not found or it may have been deleted.']);
-    }
-}
+  const numberId = Number(id);
+  const note = await prisma.note.findUnique({ where: { id: numberId } });
+  if (!note) {
+    throw new CustomError(404, ['note not found or it may have been deleted.']);
+  }
+};

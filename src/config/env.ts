@@ -2,7 +2,8 @@ import dotenv from 'dotenv';
 
 const environment = process.env.NODE_ENV || 'development';
 
-const envFile = environment === 'production' ? '.env.production' : '.env.development';
+const envFile =
+  environment === 'production' ? '.env.production' : '.env.development';
 dotenv.config({ path: envFile });
 
 export const config = {

@@ -26,21 +26,43 @@ export class TaskController {
       const task = await this.taskService.create(taskData);
       res.status(201).json(task);
     } catch (error) {
-        next(error);
+      next(error);
     }
   }
 
-  findAll = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  findAll = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> => {
     try {
-      const { page = 1, limit = 10, search, priority, sortBy, sortDirection } = req.query as any;
-      const categories = await this.taskService.findAll({ page: Number(page), limit: Number(limit), search, priority, sortBy, sortDirection });
+      const {
+        page = 1,
+        limit = 10,
+        search,
+        priority,
+        sortBy,
+        sortDirection,
+      } = req.query as any;
+      const categories = await this.taskService.findAll({
+        page: Number(page),
+        limit: Number(limit),
+        search,
+        priority,
+        sortBy,
+        sortDirection,
+      });
       res.status(200).json(categories);
     } catch (error) {
       next(error);
     }
   };
 
-  async findTasksByStatus(req: Request, res: Response, next: NextFunction): Promise<void> {
+  async findTasksByStatus(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
     try {
       const { status } = req.params;
       const { page = 1, limit = 10 } = req.query;
@@ -49,20 +71,22 @@ export class TaskController {
       const limitNumber = Number(limit);
 
       const tasks = await this.taskService.findByStatus({
-        status: status as TaskStatus, 
-        page: pageNumber, 
-        limit: limitNumber
+        status: status as TaskStatus,
+        page: pageNumber,
+        limit: limitNumber,
       });
-  
+
       res.status(200).json(tasks);
     } catch (error) {
       next(error);
     }
   }
-  
-  
 
-  async findById(req: Request, res: Response, next: NextFunction): Promise<void> {
+  async findById(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
     try {
       const { id } = req.params;
       const task = await this.taskService.findById(Number(id));
@@ -72,7 +96,7 @@ export class TaskController {
         res.status(404).json({ message: 'Task not found' });
       }
     } catch (error) {
-        next(error);
+      next(error);
     }
   }
 
@@ -83,7 +107,7 @@ export class TaskController {
       const updatedTask = await this.taskService.update(Number(id), taskData);
       res.status(200).json(updatedTask);
     } catch (error) {
-        next(error);
+      next(error);
     }
   }
 
@@ -93,7 +117,7 @@ export class TaskController {
       const deletedTask = await this.taskService.delete(Number(id));
       res.status(200).json(deletedTask);
     } catch (error) {
-        next(error);
+      next(error);
     }
   }
 }

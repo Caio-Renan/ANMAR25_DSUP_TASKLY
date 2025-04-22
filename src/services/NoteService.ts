@@ -1,17 +1,23 @@
 import { Note } from '@prisma/client';
 import { RepositoryFactory } from '../repositories/repositoryFactory.js';
-import { PaginationFilter } from '../repositories/IBaseRepository.js'
-import { checkIfNoteIdExists } from './helpers/noteHelper.js'
+import { PaginationFilter } from '../repositories/IBaseRepository.js';
+import { checkIfNoteIdExists } from './helpers/noteHelper.js';
 
 export class NoteService {
   private noteRepository = RepositoryFactory.noteRepository;
 
-  async create(taskId: number, data: Omit<Note, 'id' | 'createdAt' | 'updatedAt'>): Promise<Note> {
+  async create(
+    taskId: number,
+    data: Omit<Note, 'id' | 'createdAt' | 'updatedAt'>
+  ): Promise<Note> {
     return this.noteRepository.create({ ...data, taskId });
   }
 
-  async findAllByTaskId(taskId: number, pagination: PaginationFilter): Promise<{ items: Note[]; total: number }> {
-    return this.noteRepository.findAll({taskId}, pagination);
+  async findAllByTaskId(
+    taskId: number,
+    pagination: PaginationFilter
+  ): Promise<{ items: Note[]; total: number }> {
+    return this.noteRepository.findAll({ taskId }, pagination);
   }
 
   async findById(id: number): Promise<Note | null> {

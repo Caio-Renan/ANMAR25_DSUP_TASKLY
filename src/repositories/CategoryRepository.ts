@@ -8,9 +8,15 @@ export class CategoryRepository implements IBaseRepository<Category> {
     return prisma.category.create({ data });
   }
 
-  async findAll({ page = 1, limit = 10, search, sortBy = 'createdAt', sortDirection = 'asc' }: PaginationFilter): Promise<{ items: Category[]; total: number }> {
+  async findAll({
+    page = 1,
+    limit = 10,
+    search,
+    sortBy = 'createdAt',
+    sortDirection = 'asc',
+  }: PaginationFilter): Promise<{ items: Category[]; total: number }> {
     const skip = (page - 1) * limit;
-    
+
     const where = search
       ? {
           name: {
@@ -18,7 +24,7 @@ export class CategoryRepository implements IBaseRepository<Category> {
           },
         }
       : {};
-  
+
     const [items, total] = await Promise.all([
       prisma.category.findMany({
         where,
@@ -30,10 +36,9 @@ export class CategoryRepository implements IBaseRepository<Category> {
       }),
       prisma.category.count({ where }),
     ]);
-  
+
     return { items, total };
   }
-  
 
   findById(id: number) {
     return prisma.category.findUnique({ where: { id } });

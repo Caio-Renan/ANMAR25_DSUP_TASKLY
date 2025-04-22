@@ -6,4 +6,4 @@ export const RepositoryFactory = {
   taskRepository: new TaskRepository(),
   noteRepository: new NoteRepository(),
   categoryRepository: new CategoryRepository(),
-}
+};
