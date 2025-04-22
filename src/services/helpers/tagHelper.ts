@@ -1,7 +1,7 @@
 import { prisma } from '../../database/prisma'
 import CustomError from '../../utils/CustomError'
 
-export const checkTagId = async (id: string) => {
+export const checkIfTagIdExists = async (id: number) => {
     const numberId = Number(id);
     const tag = await prisma.tag.findUnique({ where: { id: numberId 
     }})

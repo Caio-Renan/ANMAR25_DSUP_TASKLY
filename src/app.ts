@@ -18,6 +18,6 @@ app.use('/api/v1', noteRoutes);
 app.use('/api/v1', categoryRoutes);
 //app.use('/api/v1', taskTagRoutes);
 
-//app.use(globalErrorHandler);
+app.use(globalErrorHandler);
 
 export default app;

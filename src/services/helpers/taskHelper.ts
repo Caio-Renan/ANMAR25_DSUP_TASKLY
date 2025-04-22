@@ -1,7 +1,7 @@
 import { prisma } from '../../database/prisma'
 import CustomError from '../../utils/CustomError'
 
-export const checkTaskId = async (id: string) => {
+export const checkIfTaskIdExists = async (id: number) => {
   const numberId = Number(id);
   const task = await prisma.task.findUnique({ where: { id: numberId 
   }})
