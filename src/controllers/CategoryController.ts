@@ -19,22 +19,42 @@ export class CategoryController {
     }
   }
 
-  findAll = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  findAll = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> => {
     try {
-      const { page = 1, limit = 10, search, sortBy, sortDirection } = req.query as any;
-      const categories = await this.categoryService.findAll({ page: Number(page), limit: Number(limit), search, sortBy, sortDirection });
+      const {
+        page = 1,
+        limit = 10,
+        search,
+        sortBy,
+        sortDirection,
+      } = req.query as any;
+      const categories = await this.categoryService.findAll({
+        page: Number(page),
+        limit: Number(limit),
+        search,
+        sortBy,
+        sortDirection,
+      });
       res.status(200).json(categories);
     } catch (error) {
       next(error);
     }
   };
 
-  async findById(req: Request, res: Response, next: NextFunction): Promise<void> {
+  async findById(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
     try {
       const { id } = req.params;
       const category = await this.categoryService.findById(Number(id));
-      
-      res.status(200).json(category)
+
+      res.status(200).json(category);
     } catch (error) {
       next(error);
     }
@@ -44,8 +64,11 @@ export class CategoryController {
     try {
       const { id } = req.params;
       const categoryData = req.body;
-      const updatedCategory = await this.categoryService.update(Number(id), categoryData);
-      
+      const updatedCategory = await this.categoryService.update(
+        Number(id),
+        categoryData
+      );
+
       res.status(200).json(updatedCategory);
     } catch (error) {
       next(error);

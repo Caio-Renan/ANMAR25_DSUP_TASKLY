@@ -19,18 +19,38 @@ export class NoteController {
     }
   }
 
-  async findAllByTaskId(req: Request, res: Response, next: NextFunction): Promise<void> {
+  async findAllByTaskId(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
     try {
-      const { page = 1, limit = 10, search, sortBy, sortDirection } = req.query as any;
+      const {
+        page = 1,
+        limit = 10,
+        search,
+        sortBy,
+        sortDirection,
+      } = req.query as any;
       const taskId = Number(req.params.taskId);
-      const notes = await this.noteService.findAllByTaskId( taskId, { page: Number(page), limit: Number(limit), search, sortBy, sortDirection});
+      const notes = await this.noteService.findAllByTaskId(taskId, {
+        page: Number(page),
+        limit: Number(limit),
+        search,
+        sortBy,
+        sortDirection,
+      });
       res.status(200).json(notes);
     } catch (error) {
       next(error);
     }
   }
 
-  async findById(req: Request, res: Response, next: NextFunction): Promise<void> {
+  async findById(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
     try {
       const { id } = req.params;
       const note = await this.noteService.findById(Number(id));

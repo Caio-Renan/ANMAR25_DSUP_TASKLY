@@ -1,10 +1,12 @@
-import { Task, TaskStatus } from '@prisma/client'
-import { prisma } from '../database/prisma.js'
-import { IBaseRepository } from './IBaseRepository.js'
-import { PaginationFilter } from './IBaseRepository.js'
+import { Task, TaskStatus } from '@prisma/client';
+import { prisma } from '../database/prisma.js';
+import { IBaseRepository } from './IBaseRepository.js';
+import { PaginationFilter } from './IBaseRepository.js';
 export class TaskRepository implements IBaseRepository<Task> {
-  async create(data: Omit<Task, 'id' | 'createdAt' | 'updatedAt'>): Promise<Task> {
-    return prisma.task.create({ data })
+  async create(
+    data: Omit<Task, 'id' | 'createdAt' | 'updatedAt'>
+  ): Promise<Task> {
+    return prisma.task.create({ data });
   }
 
   async findAll(filter: PaginationFilter) {
@@ -22,9 +24,7 @@ export class TaskRepository implements IBaseRepository<Task> {
 
     const where = {
       ...(search && {
-        OR: [
-          { title: { contains: search } },
-        ],
+        OR: [{ title: { contains: search } }],
       }),
       ...(priority && {
         priority: { equals: priority },
@@ -69,7 +69,7 @@ export class TaskRepository implements IBaseRepository<Task> {
       take: limit,
     });
   }
-  
+
   async countTasksByStatus(status: TaskStatus): Promise<number> {
     return prisma.task.count({
       where: {
@@ -77,17 +77,16 @@ export class TaskRepository implements IBaseRepository<Task> {
       },
     });
   }
-  
 
   async findById(id: number): Promise<Task | null> {
-    return prisma.task.findUnique({ where: { id } })
+    return prisma.task.findUnique({ where: { id } });
   }
 
   async update(id: number, data: Partial<Task>): Promise<Task> {
-    return prisma.task.update({ where: { id }, data })
+    return prisma.task.update({ where: { id }, data });
   }
 
   async delete(id: number): Promise<Task> {
-    return prisma.task.delete({ where: { id } })
+    return prisma.task.delete({ where: { id } });
   }
 }

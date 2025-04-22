@@ -1,11 +1,13 @@
 import { Task, TaskStatus } from '@prisma/client';
 import { RepositoryFactory } from '../repositories/repositoryFactory.js';
-import { PaginationFilter } from '../repositories/IBaseRepository.js'
-import { checkIfTaskIdExists } from './helpers/taskHelper.js'
+import { PaginationFilter } from '../repositories/IBaseRepository.js';
+import { checkIfTaskIdExists } from './helpers/taskHelper.js';
 export class TaskService {
   private taskRepository = RepositoryFactory.taskRepository;
 
-  async create(data: Omit<Task, 'id' | 'createdAt' | 'updatedAt'>): Promise<Task> {
+  async create(
+    data: Omit<Task, 'id' | 'createdAt' | 'updatedAt'>
+  ): Promise<Task> {
     return this.taskRepository.create(data);
   }
 
@@ -38,13 +40,12 @@ export class TaskService {
     limit?: number;
   }): Promise<{ items: Task[]; total: number }> {
     const skip = (page - 1) * limit;
-  
+
     const [items, total] = await Promise.all([
       this.taskRepository.findTasksByStatus({ status, skip, limit }),
       this.taskRepository.countTasksByStatus(status),
     ]);
-  
+
     return { items, total };
   }
-  
 }

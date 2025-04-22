@@ -10,9 +10,9 @@ export const validate =
     const validation = schema.safeParse(req[property]);
 
     if (!validation.success) {
-      const errors = validation.error.errors.map((err) => err.message);
+      const errors = validation.error.errors.map(err => err.message);
       return next(new CustomError(400, errors));
     }
     req[property] = validation.data;
     return next();
-};
+  };
