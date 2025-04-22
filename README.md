@@ -131,6 +131,7 @@ npm run dev
 ```
 
 **Response Body**
+```json
 {
   "id": 1,
   "title": "Finish documentation",
@@ -142,7 +143,7 @@ npm run dev
   "createdAt": "2025-04-22T15:30:00.000Z",
   "updatedAt": "2025-04-22T15:30:00.000Z"
 }
-
+```
 ## 📝 Note
 ### 📤 Create Note (POST /api/v1/tasks/:taskId/notes)
 
