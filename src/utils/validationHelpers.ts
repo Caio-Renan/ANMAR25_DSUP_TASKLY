@@ -52,12 +52,6 @@ export const baseTaskSchema = z.object({
     completedAt: z.coerce.date({ message: validationMessages.date('completedAt') }).optional(),
     isRecurring: z.boolean().optional(),
 });
-  
-export const tagIdSchema = z.object({
-    tagId: z.coerce.number()
-      .int({ message: validationMessages.number.int('tagId') })
-      .positive({ message: validationMessages.number.positiveNumber('tagId') }),
-});
 
 export const statusParamSchema = z.object({
     status: z.enum(TaskStatusValues as [TaskStatus, ...TaskStatus[]], {

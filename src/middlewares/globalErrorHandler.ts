@@ -12,8 +12,6 @@ const globalErrorHandler = (
     return;
   }
 
-  //console.error('Error Stack:', err.stack);
-
   res.status(500).json({
     errors: ['An internal server error occurred'],
   });

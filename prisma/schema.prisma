@@ -23,8 +23,8 @@ enum TaskPriority {
 
 model Task {
   id          Int      @id @default(autoincrement())
-  title       String
-  description String?
+  title       String   @db.VarChar(100)
+  description String?  @db.VarChar(500)
   status      TaskStatus @default(TODO)
   priority    TaskPriority
   categoryId   Int
@@ -34,9 +34,7 @@ model Task {
   dueDate DateTime? @map("due_date")
   completedAt DateTime? @map("completed_at")
   isRecurring Boolean @default(false) @map("is_recurring")
-  //assignedTo Int? @map("assigned_to") FK to User model (future implementation)
   notes Note[] 
-  tags TaskTag[]
 
   @@index([status], name: "idx_task_status")
   @@index([priority], name: "idx_task_priority")
@@ -45,9 +43,8 @@ model Task {
 
 model Note {
   id          Int      @id @default(autoincrement())
-  content     String
+  content     String  @db.VarChar(500)
   isImportant Boolean @default(false) @map("is_important")
-  //author      Int? FK to User (future feature)
   taskId      Int
   createdAt  DateTime @default(now()) @map("created_at")
   updatedAt  DateTime @updatedAt @map("updated_at")
@@ -58,27 +55,8 @@ model Note {
 
 model Category {
   id         Int      @id @default(autoincrement())
-  name       String   @unique
+  name       String   @unique @db.VarChar(50)
   tasks      Task[]
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
-}
-
-model Tag {
-  id         Int       @id @default(autoincrement())
-  name       String    @unique
-  tasks      TaskTag[]
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime  @updatedAt @map("updated_at")
-
-  @@index([name], name: "idx_name")
-}
-
-model TaskTag {
-  taskId  Int
-  tagId   Int
-  task    Task   @relation(fields: [taskId], references: [id])
-  tag     Tag    @relation(fields: [tagId], references: [id])
-
-  @@id([taskId, tagId])
 }
