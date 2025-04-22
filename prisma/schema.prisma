@@ -12,6 +12,7 @@ enum TaskStatus {
   PENDING
   IN_PROGRESS
   COMPLETED
+  OVERDUE
 }
 
 enum TaskPriority {
@@ -24,7 +25,7 @@ model Task {
   id          Int      @id @default(autoincrement())
   title       String
   description String?
-  status      TaskStatus
+  status      TaskStatus @default(PENDING)
   priority    TaskPriority
   categoryId   Int
   category     Category @relation(fields: [categoryId], references: [id])
