@@ -1,0 +1,60 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  DONE
+  OVERDUE
+}
+
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+model Task {
+  id          Int      @id @default(autoincrement())
+  title       String   @db.VarChar(100)
+  description String?  @db.VarChar(500)
+  status      TaskStatus @default(TODO)
+  priority    TaskPriority
+  categoryId   Int
+  category     Category @relation(fields: [categoryId], references: [id])
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+  isRecurring Boolean @default(false) @map("is_recurring")
+  notes Note[] 
+
+  @@index([status], name: "idx_task_status")
+  @@index([priority], name: "idx_task_priority")
+  @@index([categoryId], name: "idx_category_id")
+}
+
+model Note {
+  id          Int      @id @default(autoincrement())
+  content     String  @db.VarChar(500)
+  isImportant Boolean @default(false) @map("is_important")
+  taskId      Int
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+  task        Task     @relation(fields: [taskId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@index([taskId], name: "idx_task_id")
+}
+
+model Category {
+  id         Int      @id @default(autoincrement())
+  name       String   @unique @db.VarChar(50)
+  tasks      Task[]
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+}
