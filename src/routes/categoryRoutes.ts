@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { validateBody } from '../middlewares/validations/validateBody.js';
 import { validateParams } from '../middlewares/validations/validateParams.js';
-import { createCategorySchema, updateCategorySchema, findCategoryByIdSchema, deleteCategorySchema } from '../schemas/categorySchemas.js';
+import { createCategorySchema, updateCategorySchema, findCategoryByIdSchema, deleteCategorySchema, updateCategoryIdSchema } from '../schemas/categorySchemas.js';
 import { controllerFactory } from '../controllers/controllerFactory.js';
 
 const router = Router();
@@ -12,7 +12,7 @@ router.post('/categories', validateBody(createCategorySchema), controllerFactory
 
 router.get('/categories/:id', validateParams(findCategoryByIdSchema), controllerFactory.categoryController.findById.bind(controllerFactory.categoryController));
 
-router.put('/categories/:id', validateParams(updateCategorySchema), controllerFactory.categoryController.update.bind(controllerFactory.categoryController));
+router.put('/categories/:id', validateParams(updateCategoryIdSchema), validateBody(updateCategorySchema), controllerFactory.categoryController.update.bind(controllerFactory.categoryController));
 
 router.delete('/categories/:id', validateParams(deleteCategorySchema), controllerFactory.categoryController.delete.bind(controllerFactory.categoryController));
 
