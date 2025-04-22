@@ -7,6 +7,7 @@ export class NoteRepository implements INoteRepository<Note> {
     return prisma.note.create({
       data: {
         content: data.content,
+        isImportant: data.isImportant,
         task: {
           connect: {
             id: data.taskId,
