@@ -109,3 +109,76 @@ npm run dev
 | GET    | `/api/v1/tasks/:id`                  | Get task by ID.                              |
 | PUT    | `/api/v1/tasks/:id`                  | Update task by ID.                           |
 | DELETE | `/api/v1/tasks/:id`                  | Delete task by ID.                           |
+
+## 📦 Request & Response Examples
+
+---
+
+## ✅ Task
+
+### 📤 Create Task (POST `/api/v1/tasks`)
+
+**Request Body**
+```json
+{
+  "title": "Finish documentation",
+  "description": "Complete the API README documentation",
+  "status": "TODO",
+  "priority": "HIGH",
+  "categoryId": 1,
+  "isRecurring": false
+}
+```
+
+**Response Body**
+{
+  "id": 1,
+  "title": "Finish documentation",
+  "description": "Complete the API README documentation",
+  "status": "TODO",
+  "priority": "HIGH",
+  "categoryId": 1,
+  "isRecurring": false,
+  "createdAt": "2025-04-22T15:30:00.000Z",
+  "updatedAt": "2025-04-22T15:30:00.000Z"
+}
+
+## 📝 Note
+### 📤 Create Note (POST /api/v1/tasks/:taskId/notes)
+
+**Request Body**
+```json
+{
+  "content": "Don't forget to push to GitHub",
+  "isImportant": true
+}
+```
+
+**Response Body**
+{
+  "id": 1,
+  "content": "Don't forget to push to GitHub",
+  "isImportant": true,
+  "taskId": 1,
+  "createdAt": "2025-04-22T15:30:00.000Z",
+  "updatedAt": "2025-04-22T15:30:00.000Z"
+}
+
+## 🗂️ Category
+### 📤 Create Category (POST /api/v1/categories)
+
+**Request Body**
+```json
+{
+  "name": "Work"
+}
+
+```
+
+**Response Body**
+{
+  "id": 1,
+  "name": "Work",
+  "createdAt": "2025-04-22T15:30:00.000Z",
+  "updatedAt": "2025-04-22T15:30:00.000Z"
+}
