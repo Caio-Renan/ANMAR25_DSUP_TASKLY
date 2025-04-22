@@ -1,5 +1,5 @@
-import { prisma } from '../../database/prisma'
-import CustomError from '../../utils/CustomError'
+import { prisma } from '../../database/prisma.js'
+import CustomError from '../../utils/CustomError.js'
 
 export const checkIfCategoryIdExists = async (id: number) => {;
     const category = await prisma.category.findUnique({ where: { id }})

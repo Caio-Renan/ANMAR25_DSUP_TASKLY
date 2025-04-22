@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { basePaginationSchema, categoryPaginationSchema, taskPaginationSchema, notePaginationSchema } from '../utils/validationHelpers';
+import { basePaginationSchema, categoryPaginationSchema, taskPaginationSchema, notePaginationSchema } from '../utils/validationHelpers.js';
 
 export const paginationCategoryQuerySchema = basePaginationSchema.merge(categoryPaginationSchema).strict();
 export const paginationTaskQuerySchema = basePaginationSchema.merge(taskPaginationSchema).strict();
