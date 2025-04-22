@@ -32,11 +32,8 @@ export class CategoryController {
     try {
       const { id } = req.params;
       const category = await this.categoryService.findById(Number(id));
-      if (category) {
-        res.status(200).json(category);
-      } else {
-        res.status(404).json({ message: 'Category not found' });
-      }
+      
+      res.status(200).json(category)
     } catch (error) {
       next(error);
     }
@@ -47,6 +44,7 @@ export class CategoryController {
       const { id } = req.params;
       const categoryData = req.body;
       const updatedCategory = await this.categoryService.update(Number(id), categoryData);
+      
       res.status(200).json(updatedCategory);
     } catch (error) {
       next(error);
