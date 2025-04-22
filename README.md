@@ -155,6 +155,7 @@ npm run dev
 ```
 
 **Response Body**
+```json
 {
   "id": 1,
   "content": "Don't forget to push to GitHub",
@@ -163,7 +164,7 @@ npm run dev
   "createdAt": "2025-04-22T15:30:00.000Z",
   "updatedAt": "2025-04-22T15:30:00.000Z"
 }
-
+```
 ## 🗂️ Category
 ### 📤 Create Category (POST /api/v1/categories)
 
@@ -176,9 +177,11 @@ npm run dev
 ```
 
 **Response Body**
+```json
 {
   "id": 1,
   "name": "Work",
   "createdAt": "2025-04-22T15:30:00.000Z",
   "updatedAt": "2025-04-22T15:30:00.000Z"
 }
+```
