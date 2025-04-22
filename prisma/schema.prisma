@@ -31,8 +31,6 @@ model Task {
   category     Category @relation(fields: [categoryId], references: [id])
   createdAt  DateTime @default(now()) @map("created_at")
   updatedAt  DateTime @updatedAt @map("updated_at")
-  dueDate DateTime? @map("due_date")
-  completedAt DateTime? @map("completed_at")
   isRecurring Boolean @default(false) @map("is_recurring")
   notes Note[] 
 
