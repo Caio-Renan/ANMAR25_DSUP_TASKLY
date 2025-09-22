@@ -163,7 +163,7 @@ npm run dev
 }
 ```
 ### 📝 Note
-#### 📤 Create Note (POST /api/v1/tasks/:taskId/notes)
+#### 📤 Create Note (POST `/api/v1/tasks/:taskId/notes`)
 
 **Request Body**
 ```json
@@ -185,7 +185,7 @@ npm run dev
 }
 ```
 ### 🗂️ Category
-#### 📤 Create Category (POST /api/v1/categories)
+#### 📤 Create Category (POST `/api/v1/categories`)
 
 **Request Body**
 ```json
